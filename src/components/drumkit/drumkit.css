@@ -1,0 +1,25 @@
+.kit {
+  width: auto 0;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* flex-wrap: wrap; */
+  justify-content: space-between;
+  margin: 20px;
+  padding: 10px;
+}
+
+.drumpad_container {
+  display: flex;
+  justify-content: center;
+  padding: 2px;
+  margin: 5px;
+}
+
+.volumeSlider {
+  display: inline-block;
+  margin: 150px;
+  width: 350px;
+  text-align: center;
+}

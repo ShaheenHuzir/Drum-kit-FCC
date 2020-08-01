@@ -1,0 +1,24 @@
+.drum-pad {
+  width: 100px;
+  height: 100px;
+  margin: 2px;
+  border: 1px solid black;
+  background-color: rgba(51, 51, 51, 0.2);
+  border-radius: 4px;
+}
+
+.ped {
+  animation-name: backgroundChange;
+  animation-duration: 0.2s;
+  animation-iteration-count: 1;
+}
+
+@keyframes backgroundChange {
+  50% {
+    background-color: aqua;
+    transform: scale(1.1);
+  }
+  100% {
+    background-color: white;
+  }
+}
