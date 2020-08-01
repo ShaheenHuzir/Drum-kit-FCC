@@ -2,7 +2,7 @@
   "name": "drum-machine",
   "version": "0.1.0",
   "private": true,
-  "homepage": "drum-kit-FCC--project",
+  "homepage": "drum-kit--FCC",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
