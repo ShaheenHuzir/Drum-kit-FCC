@@ -51,7 +51,7 @@ class Drumpad extends React.Component {
           id={soundName}
         >
           {audioKey}
-          <audio src={this.audio} id={soundName} className='clip' />
+          <audio src={this.audio} id={audioKey} className='clip' />
         </div>
       </div>
     );
