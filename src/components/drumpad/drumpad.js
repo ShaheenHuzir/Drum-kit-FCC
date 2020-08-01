@@ -1,7 +1,6 @@
 import React from 'react';
 import './drumpad.css';
 import classNames from 'classnames';
-import tracks from '../../data.js';
 
 class Drumpad extends React.Component {
   constructor(props) {
@@ -40,7 +39,7 @@ class Drumpad extends React.Component {
   }
 
   render() {
-    let { looks, soundName, soundCode } = this.props;
+    let { soundName, soundCode } = this.props;
     let classes = classNames({ ped: this.state.look, 'drum-pad': true });
     let audioKey = String.fromCharCode(soundCode);
     return (
