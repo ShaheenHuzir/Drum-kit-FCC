@@ -7,7 +7,7 @@ import './drumkit.css';
 
 function Drumkit(props) {
   const [volumeLevel, volumeSetter] = useState(0.5);
-  const [look, setLook] = useState(true);
+  const [look, setLook] = useState(false);
   const [soundId, setsId] = useState('');
 
   let setsLook = () => {
@@ -56,7 +56,6 @@ function Drumkit(props) {
           keyPlayed={soundId}
           reLooks={resetsLook}
           looks={look}
-          keyPlayed={soundId}
         />
       </div>
     </div>
