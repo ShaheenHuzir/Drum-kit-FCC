@@ -12,6 +12,7 @@ function Drumkit(props) {
 
   let setsLook = () => {
     setLook(true);
+    console.log('look is set!');
   };
 
   let resetsLook = () => {
@@ -22,8 +23,9 @@ function Drumkit(props) {
     volumeSetter(volume);
   };
 
-  let setId = (name) => {
+  let setterId = (name) => {
     setsId(name);
+    console.log('ID is set!');
   };
 
   return (
@@ -37,8 +39,9 @@ function Drumkit(props) {
                 sound={track.clip}
                 soundName={track.clipName}
                 soundCode={track.code}
-                volume={volumeLevel}
-                looks={look}
+                volumes={volumeLevel}
+                setLooks={setsLook}
+                setId={setterId}
               />
             );
           })}
@@ -53,6 +56,7 @@ function Drumkit(props) {
           keyPlayed={soundId}
           reLooks={resetsLook}
           looks={look}
+          keyPlayed={soundId}
         />
       </div>
     </div>
