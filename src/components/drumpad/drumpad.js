@@ -1,61 +1,63 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './drumpad.css';
 import classNames from 'classnames';
 
-class Drumpad extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      look: false,
-    };
-    this.audio = new Audio(this.props.sound);
-    this.volume = this.props.volume;
-    this.name = this.props.soundName;
-  }
+function Drumpad(props) {
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     look: false,
+  //   };
+  //   this.audio = new Audio(this.props.sound);
+  //   this.volume = this.props.volume;
+  //   this.name = this.props.soundName;
+  // }
 
-  playAudio = () => {
-    this.audio.currentTime = 0;
-    this.props.setsId(this.name);
-    this.audio.play();
-    this.audio.volume = this.volume;
-    this.setState({
-      look: true,
-    });
-    this.props.setsLooks();
+  let { looks, soundName, soundCode, sound, volume } = props;
+
+  let audio = new Audio(sound);
+
+  const [look, setLook] = useState(true);
+
+  // let playAudio = (audio) => {
+  //   audio.play();
+  //   audio.currentTime = 0;
+  //   props.setsId(soundName);
+
+  //   audio.volume = volume;
+  //   setLook(true);
+  //   props.setsLooks();
+  //
+
+  let removeClass = () => {
+    setLook(false);
   };
 
-  removeClass = () => {
-    this.setState({
-      look: false,
-    });
-  };
+  console.log(audio.ended);
 
-  componentDidMount() {
+  useEffect(() => {
     window.addEventListener('keydown', (e) => {
-      if (e.keyCode === this.props.soundCode) {
-        this.playAudio();
+      if (e.keyCode === soundCode) {
+        audio.play();
       }
     });
-  }
+  }, [soundCode]);
 
-  render() {
-    let { soundName, soundCode } = this.props;
-    let classes = classNames({ ped: this.state.look, 'drum-pad': true });
-    let audioKey = String.fromCharCode(soundCode);
-    return (
-      <div>
-        <div
-          className={('drum-pad', `${classes}`)}
-          onClick={this.playAudio}
-          onAnimationEnd={this.removeClass}
-          id={soundName}
-        >
-          {audioKey}
-          <audio src={this.props.sound} id={audioKey} className='clip' />
-        </div>
+  let classes = classNames({ ped: looks, 'drum-pad': true });
+  let audioKey = String.fromCharCode(soundCode);
+  return (
+    <div>
+      <div
+        className={('drum-pad', `${classes}`)}
+        onClick={() => audio.play()}
+        onAnimationEnd={removeClass}
+        id={soundName}
+      >
+        {audioKey}
+        <audio id={audioKey} className='clip' />
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default Drumpad;

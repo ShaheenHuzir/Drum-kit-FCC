@@ -1,82 +1,62 @@
-import React from 'react';
+import React, { useState } from 'react';
 import VolumeSlider from '../volumeSlider/volumeSlider';
 import tracks from '../../data.js';
 import Drumpad from '../drumpad/drumpad.js';
 import Display from '../display/display.js';
 import './drumkit.css';
 
-class Drumkit extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      volumeLevel: 0.5,
-      soundId: '',
-      look: true,
-    };
-  }
+function Drumkit(props) {
+  const [volumeLevel, volumeSetter] = useState(0.5);
+  const [look, setLook] = useState(true);
+  const [soundId, setsId] = useState('');
 
-  setLook = () => {
-    this.setState({
-      look: true,
-    });
+  let setsLook = () => {
+    setLook(true);
   };
 
-  resetLook = () => {
-    this.setState({
-      look: false,
-    });
-    console.log('fuck you');
+  let resetsLook = () => {
+    setLook(false);
   };
 
-  setVolume = (volume) => {
-    this.setState({
-      volumeLevel: volume,
-    });
+  let setVolume = (volume) => {
+    volumeSetter(volume);
   };
 
-  setId = (name) => {
-    this.setState({
-      soundId: name,
-    });
+  let setId = (name) => {
+    setsId(name);
   };
 
-  render() {
-    let { volumeLevel, soundId } = this.state;
-    console.log('look is', this.state.look);
-    return (
-      <div className='kit'>
-        <div id='drum-machine' className='drumpad_container'>
-          {!!tracks &&
-            tracks.length > 0 &&
-            tracks.map((track) => {
-              return (
-                <Drumpad
-                  sound={track.clip}
-                  soundName={track.clipName}
-                  soundCode={track.code}
-                  volume={volumeLevel}
-                  looks={this.state.look}
-                  setsId={this.setId}
-                  setsLooks={this.setLook}
-                />
-              );
-            })}
-        </div>
-        <div className='volumeSlider'>
-          <h3>Volume</h3>
-          <VolumeSlider setsVolume={this.setVolume} />
-        </div>
-        <div id='display'>
-          <Display
-            volumeDisplay={volumeLevel}
-            looks={this.state.look}
-            reLooks={this.resetLook}
-            keyPlayed={soundId}
-          />
-        </div>
+  return (
+    <div className='kit'>
+      <div id='drum-machine' className='drumpad_container'>
+        {!!tracks &&
+          tracks.length > 0 &&
+          tracks.map((track) => {
+            return (
+              <Drumpad
+                sound={track.clip}
+                soundName={track.clipName}
+                soundCode={track.code}
+                volume={volumeLevel}
+                looks={look}
+              />
+            );
+          })}
       </div>
-    );
-  }
+      <div className='volumeSlider'>
+        <h3>Volume</h3>
+        <VolumeSlider setsVolume={setVolume} />
+      </div>
+      <div id='display'>
+        <Display
+          volumeDisplay={volumeLevel}
+          keyPlayed={soundId}
+          reLooks={resetsLook}
+          looks={look}
+        />
+      </div>
+    </div>
+  );
 }
 
 export default Drumkit;

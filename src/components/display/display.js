@@ -5,9 +5,7 @@ import './display.css';
 function Display(props) {
   let keyClass = classNames({ playing: true, played: props.looks });
   let { volumeDisplay, keyPlayed } = props;
-
-  console.log(props.looks);
-
+  //console.log(keyPlayed);
   return (
     <div className='display_container'>
       <div className='volume_display'>
