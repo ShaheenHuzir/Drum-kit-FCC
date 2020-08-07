@@ -25,7 +25,7 @@ function Drumkit(props) {
 
   let setterId = (name) => {
     setsId(name);
-    console.log('ID is set!');
+    console.log('ID is set!', name);
   };
 
   return (

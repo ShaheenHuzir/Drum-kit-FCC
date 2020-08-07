@@ -29,9 +29,13 @@ function Drumpad(props) {
         setLook(true);
         console.log(audio.volume);
         audio.play();
+        if (!audio.ended) {
+          props.setId(soundName);
+          props.setLooks();
+        }
       }
     });
-  }, [audio, soundCode, soundName, volumes]);
+  }, [soundCode, soundName, volumes]);
 
   let classes = classNames({ ped: look, 'drum-pad': true });
   let audioKey = String.fromCharCode(soundCode);
